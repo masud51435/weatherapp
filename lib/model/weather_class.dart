@@ -159,17 +159,17 @@ class Weather {
 
 class Hourly {
   int? dt;
-  double? temp;
-  double? feelsLike;
+  num? temp;
+  num? feelsLike;
   int? pressure;
   int? humidity;
   num? dewPoint;
   num? uvi;
   int? clouds;
   int? visibility;
-  double? windSpeed;
+  num? windSpeed;
   int? windDeg;
-  double? windGust;
+  num? windGust;
   List<Weather>? weather;
   num? pop;
 
@@ -191,7 +191,7 @@ class Hourly {
 
   Hourly.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
-    temp = json['temp'];
+    temp = json['temp']?.round();
     feelsLike = json['feels_like'];
     pressure = json['pressure'];
     humidity = json['humidity'];
@@ -245,10 +245,10 @@ class Daily {
   FeelsLike? feelsLike;
   int? pressure;
   int? humidity;
-  double? dewPoint;
-  double? windSpeed;
+  num? dewPoint;
+  num? windSpeed;
   int? windDeg;
-  double? windGust;
+  num? windGust;
   List<Weather>? weather;
   int? clouds;
   num? pop;

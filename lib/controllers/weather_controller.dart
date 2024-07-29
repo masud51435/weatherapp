@@ -16,6 +16,17 @@ class WeatherController extends GetxController {
   RxDouble longitude() => _longitude;
   getWeatherData() => weatherData.value;
 
+  final RxInt selectedIndex = 0.obs;
+
+  void onItemTap(int index) {
+    selectedIndex.value = index;
+  }
+
+  bool isSelect(int index) {
+    bool isSelected = selectedIndex.value == index;
+    return isSelected;
+  }
+
   @override
   void onInit() {
     if (_isLoading.isTrue) {

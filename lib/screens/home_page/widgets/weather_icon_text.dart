@@ -19,7 +19,7 @@ class WeatherIconText extends StatelessWidget {
           width: 60,
           padding: const EdgeInsets.all(15),
           decoration: BoxDecoration(
-            color: Colors.grey.withOpacity(0.25),
+            color: Colors.grey.shade200,
             borderRadius: BorderRadius.circular(15),
           ),
           child: Image.asset(

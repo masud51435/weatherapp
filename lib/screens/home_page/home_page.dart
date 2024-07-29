@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:weatherapp/controllers/weather_controller.dart';
 import 'widgets/current_weather_widget.dart';
 import 'widgets/header_location_date.dart';
+import 'widgets/hourly_weather_data.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -27,6 +28,10 @@ class HomePage extends StatelessWidget {
                     CurrentWeatherWidget(
                       weatherData: weatherController.getWeatherData(),
                     ),
+                    const SizedBox(height: 25),
+                    HourlyWeatherData(
+                      weatherData: weatherController.getWeatherData(),
+                    ),
                   ],
                 ),
               ),
@@ -34,3 +39,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
