@@ -12,7 +12,7 @@ class WeekWeatherData extends StatelessWidget {
 
   String getDay(var timeStamp) {
     DateTime time = DateTime.fromMillisecondsSinceEpoch(timeStamp * 1000);
-    String currentTime = DateFormat.E().format(time);
+    String currentTime = DateFormat('EEE').format(time);
     return currentTime;
   }
 
@@ -35,7 +35,8 @@ class WeekWeatherData extends StatelessWidget {
             ),
           ),
           ListView.builder(
-            itemCount: weatherData.daily!.length,
+            itemCount:
+                weatherData.daily!.length > 7 ? 7 : weatherData.daily!.length,
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {

@@ -42,7 +42,7 @@ class HourlyWeatherData extends StatelessWidget {
                 : weatherData.hourly!.length,
             itemBuilder: (BuildContext context, int index) {
               return Obx(
-                () => InkWell(
+                () => GestureDetector(
                   onTap: () => controller.onItemTap(index),
                   child: Container(
                     padding: const EdgeInsets.all(15),
@@ -50,7 +50,7 @@ class HourlyWeatherData extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
                       color: controller.isSelect(index)
-                          ? Colors.blue
+                          ? Colors.blue.shade800
                           : Colors.grey.shade200,
                     ),
                     child: Column(
