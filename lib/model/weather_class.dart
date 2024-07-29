@@ -65,7 +65,7 @@ class Current {
   int? pressure;
   int? humidity;
   double? dewPoint;
-  int? uvi;
+  num? uvi;
   int? clouds;
   int? visibility;
   double? windSpeed;
@@ -336,11 +336,11 @@ class Daily {
 }
 
 class Temp {
-  double? day;
-  double? min;
-  double? max;
-  double? night;
-  double? eve;
+  num? day;
+  num? min;
+  num? max;
+  num? night;
+  num? eve;
   num? morn;
 
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
@@ -367,10 +367,10 @@ class Temp {
 }
 
 class FeelsLike {
-  double? day;
+  num? day;
   num? night;
-  double? eve;
-  double? morn;
+  num? eve;
+  num? morn;
 
   FeelsLike({this.day, this.night, this.eve, this.morn});
 
