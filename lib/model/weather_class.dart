@@ -1,4 +1,3 @@
-
 class WeatherData {
   double? lat;
   double? lon;
@@ -61,7 +60,7 @@ class Current {
   int? dt;
   int? sunrise;
   int? sunset;
-  double? temp;
+  num? temp;
   double? feelsLike;
   int? pressure;
   int? humidity;
@@ -71,7 +70,6 @@ class Current {
   int? visibility;
   double? windSpeed;
   int? windDeg;
-  double? windGust;
   List<Weather>? weather;
 
   Current(
@@ -88,14 +86,13 @@ class Current {
       this.visibility,
       this.windSpeed,
       this.windDeg,
-      this.windGust,
       this.weather});
 
   Current.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
     sunrise = json['sunrise'];
     sunset = json['sunset'];
-    temp = json['temp'];
+    temp = json['temp']?.round();
     feelsLike = json['feels_like'];
     pressure = json['pressure'];
     humidity = json['humidity'];
@@ -105,7 +102,6 @@ class Current {
     visibility = json['visibility'];
     windSpeed = json['wind_speed'];
     windDeg = json['wind_deg'];
-    windGust = json['wind_gust'];
     if (json['weather'] != null) {
       weather = <Weather>[];
       json['weather'].forEach((v) {
@@ -129,7 +125,6 @@ class Current {
     data['visibility'] = visibility;
     data['wind_speed'] = windSpeed;
     data['wind_deg'] = windDeg;
-    data['wind_gust'] = windGust;
     if (weather != null) {
       data['weather'] = weather!.map((v) => v.toJson()).toList();
     }
@@ -168,16 +163,15 @@ class Hourly {
   double? feelsLike;
   int? pressure;
   int? humidity;
-  double? dewPoint;
-  double? uvi;
+  num? dewPoint;
+  num? uvi;
   int? clouds;
   int? visibility;
   double? windSpeed;
   int? windDeg;
   double? windGust;
   List<Weather>? weather;
-  double? pop;
-  Rain? rain;
+  num? pop;
 
   Hourly(
       {this.dt,
@@ -193,8 +187,7 @@ class Hourly {
       this.windDeg,
       this.windGust,
       this.weather,
-      this.pop,
-      this.rain});
+      this.pop});
 
   Hourly.fromJson(Map<String, dynamic> json) {
     dt = json['dt'];
@@ -216,7 +209,6 @@ class Hourly {
       });
     }
     pop = json['pop'];
-    rain = json['rain'] != null ? Rain.fromJson(json['rain']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -237,25 +229,6 @@ class Hourly {
       data['weather'] = weather!.map((v) => v.toJson()).toList();
     }
     data['pop'] = pop;
-    if (rain != null) {
-      data['rain'] = rain!.toJson();
-    }
-    return data;
-  }
-}
-
-class Rain {
-  double? d1h;
-
-  Rain({this.d1h});
-
-  Rain.fromJson(Map<String, dynamic> json) {
-    d1h = json['1h'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['1h'] = d1h;
     return data;
   }
 }
@@ -266,7 +239,7 @@ class Daily {
   int? sunset;
   int? moonrise;
   int? moonset;
-  double? moonPhase;
+  num? moonPhase;
   String? summary;
   Temp? temp;
   FeelsLike? feelsLike;
@@ -278,9 +251,8 @@ class Daily {
   double? windGust;
   List<Weather>? weather;
   int? clouds;
-  double? pop;
-  double? rain;
-  double? uvi;
+  num? pop;
+  num? uvi;
 
   Daily(
       {this.dt,
@@ -301,7 +273,6 @@ class Daily {
       this.weather,
       this.clouds,
       this.pop,
-      this.rain,
       this.uvi});
 
   Daily.fromJson(Map<String, dynamic> json) {
@@ -330,7 +301,6 @@ class Daily {
     }
     clouds = json['clouds'];
     pop = json['pop'];
-    rain = json['rain'];
     uvi = json['uvi'];
   }
 
@@ -360,7 +330,6 @@ class Daily {
     }
     data['clouds'] = clouds;
     data['pop'] = pop;
-    data['rain'] = rain;
     data['uvi'] = uvi;
     return data;
   }
@@ -372,7 +341,7 @@ class Temp {
   double? max;
   double? night;
   double? eve;
-  double? morn;
+  num? morn;
 
   Temp({this.day, this.min, this.max, this.night, this.eve, this.morn});
 
@@ -399,7 +368,7 @@ class Temp {
 
 class FeelsLike {
   double? day;
-  double? night;
+  num? night;
   double? eve;
   double? morn;
 

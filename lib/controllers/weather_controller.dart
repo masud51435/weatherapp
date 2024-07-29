@@ -1,17 +1,20 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:weatherapp/api/fetch_api.dart';
+import 'package:weatherapp/model/weather_class.dart';
 
 class WeatherController extends GetxController {
   static WeatherController get instance => Get.find();
   final RxBool _isLoading = true.obs;
   final RxDouble _latitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
+  final weatherData = WeatherData().obs;
 
   // instance for them to be called
   RxBool checkLoading() => _isLoading;
   RxDouble latitude() => _latitude;
   RxDouble longitude() => _longitude;
+  getWeatherData() => weatherData.value;
 
   @override
   void onInit() {
@@ -45,14 +48,21 @@ class WeatherController extends GetxController {
     //getting the right location
     return await Geolocator.getCurrentPosition(
             desiredAccuracy: LocationAccuracy.high)
-        .then((value) {
-      _latitude.value = value.latitude;
-      _longitude.value = value.longitude;
-      return FetchWeatherData()
-          .getWeatherData(value.latitude, value.longitude)
-          .then((value) {
-        _isLoading.value = false;
-      });
-    });
+        .then(
+      (value) {
+        _latitude.value = value.latitude;
+        _longitude.value = value.longitude;
+        print(value.latitude);
+        print(value.longitude);
+        return FetchWeatherData()
+            .getWeatherData(value.latitude, value.longitude)
+            .then(
+          (value) {
+            weatherData.value = value;
+            _isLoading.value = false;
+          },
+        );
+      },
+    );
   }
 }
