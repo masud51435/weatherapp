@@ -48,7 +48,7 @@ class HourlyWeatherData extends StatelessWidget {
                     padding: const EdgeInsets.all(15),
                     margin: const EdgeInsets.only(right: 15),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(15),
                       color: controller.isSelect(index)
                           ? Colors.blue
                           : Colors.grey.shade200,

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:weatherapp/controllers/weather_controller.dart';
+import '../../model/weather_class.dart';
 import 'widgets/current_weather_widget.dart';
 import 'widgets/header_location_date.dart';
 import 'widgets/hourly_weather_data.dart';
+import 'widgets/week_weather_data.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -32,6 +35,10 @@ class HomePage extends StatelessWidget {
                     HourlyWeatherData(
                       weatherData: weatherController.getWeatherData(),
                     ),
+                    const SizedBox(height: 25),
+                    WeekWeatherData(
+                      weatherData: weatherController.getWeatherData(),
+                    ),
                   ],
                 ),
               ),
@@ -39,5 +46,4 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
 
