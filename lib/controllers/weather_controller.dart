@@ -5,6 +5,7 @@ import 'package:weatherapp/model/weather_class.dart';
 
 class WeatherController extends GetxController {
   static WeatherController get instance => Get.find();
+  final RxInt selectedIndex = 0.obs;
   final RxBool _isLoading = true.obs;
   final RxDouble _latitude = 0.0.obs;
   final RxDouble _longitude = 0.0.obs;
@@ -15,8 +16,6 @@ class WeatherController extends GetxController {
   RxDouble latitude() => _latitude;
   RxDouble longitude() => _longitude;
   getWeatherData() => weatherData.value;
-
-  final RxInt selectedIndex = 0.obs;
 
   void onItemTap(int index) {
     selectedIndex.value = index;
@@ -58,13 +57,11 @@ class WeatherController extends GetxController {
     }
     //getting the right location
     return await Geolocator.getCurrentPosition(
-            desiredAccuracy: LocationAccuracy.high)
-        .then(
+      desiredAccuracy: LocationAccuracy.high,
+    ).then(
       (value) {
         _latitude.value = value.latitude;
         _longitude.value = value.longitude;
-        print(value.latitude);
-        print(value.longitude);
         return FetchWeatherData()
             .getWeatherData(value.latitude, value.longitude)
             .then(
