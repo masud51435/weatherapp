@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:weatherapp/api/fetch_api.dart';
 import 'package:weatherapp/controllers/weather_controller.dart';
-import 'package:weatherapp/model/weather_class.dart';
-
+import 'widgets/current_weather_widget.dart';
 import 'widgets/header_location_date.dart';
 
 class HomePage extends StatelessWidget {
@@ -34,46 +31,6 @@ class HomePage extends StatelessWidget {
                 ),
               ),
       ),
-    );
-  }
-}
-
-class CurrentWeatherWidget extends StatelessWidget {
-  const CurrentWeatherWidget({
-    super.key,
-    required this.weatherData,
-  });
-
-  final WeatherData weatherData;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Image.asset(
-              'assets/weather/${weatherData.current!.weather![0].icon}.png',
-            ),
-            Row(
-              children: [
-                Text(
-                  weatherData.current!.temp!.toInt().toString(),
-                  style: Theme.of(context)
-                      .textTheme
-                      .displayLarge!
-                      .apply(fontWeightDelta: 2),
-                ),
-                const SizedBox(width: 15),
-                Text(
-                  weatherData.current!.weather![0].main.toString(),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
     );
   }
 }
